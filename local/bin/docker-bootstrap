@@ -1,0 +1,64 @@
+#!/bin/sh
+
+set -e
+
+if [ -e /.init ]; then
+	exit
+fi
+
+touch /.init
+
+USER_NAME=${USER_NAME:-forumi0721}
+USER_PASSWD=$([ ! -z "${USER_EPASSWD}" ] && echo ${USER_EPASSWD} | base64 -d 2>/dev/null || echo ${USER_PASSWD:-passwd})
+USER_UID=${USER_UID:-1000}
+USER_GID=${USER_GID:-100}
+
+FTP_SHARE=${FTP_SHARE:-/data}
+FTP_BANNER=${FTP_BANNER:-Welcome}
+FTP_PASV_MIN_PORT=${FTP_PASV_MIN_PORT:-60020}
+FTP_PASV_MAX_PORT=${FTP_PASV_MAX_PORT:-60029}
+
+docker-adduser -u ${USER_UID} -g ${USER_GID} -H /home/${USER_NAME} -S /sbin/nologin -R ${USER_NAME}
+echo ${USER_NAME}:${USER_PASSWD} | chpasswd &> /dev/null
+
+ftpuseradd ${USER_NAME} ${USER_PASSWD}
+
+if [ ! -s /conf.d/vsftpd/vsftpd.conf ]; then
+	sed -e "s/^#\?\(anonymous_enable\)=.*$/\1=NO/g" \
+		-e "s/^#\?\(local_enable\)=.*$/\1=YES/g" \
+		-e "s/^#\?\(write_enable\)=.*$/\1=YES/g" \
+		-e "s/^#\?\(chroot_local_user\)=.*/\1=YES/g" \
+		-e "s/^#\?\(chroot_list_enable\)=.*/\1=YES/g" \
+		-e "s/^#\?\(chroot_list_file\)=.*/\1=\/dev\/null/g" \
+		-e "s/^#\?\(local_umask\)=.*/\1=022/g" \
+		-e "s|^#\?\(ftpd_banner\)=.*$|\1=${FTP_BANNER}|g" \
+		-e "s/^#\?\(xferlog_enable\)=.*$/\1=YES/g" \
+		-e "s/^#\?\(xferlog_file\)=.*$/\1=\/dev\/stdout/g" \
+		/etc/vsftpd/vsftpd.conf > /tmp/vsftpd.conf
+
+	cat <<- EOF >> /tmp/vsftpd.conf
+
+	seccomp_sandbox=NO
+	pam_service_name=vsftpd
+	hide_ids=YES
+	guest_enable=YES
+	guest_username=${USER_NAME}
+	virtual_use_local_privs=YES
+	allow_writeable_chroot=YES
+	local_root=/data
+	user_sub_token=\$USER
+	EOF
+
+	cat <<- EOF >> /tmp/vsftpd.conf
+
+	pasv_enable=YES
+	pasv_min_port=${FTP_PASV_MIN_PORT}
+	pasv_max_port=${FTP_PASV_MAX_PORT}
+	EOF
+
+	cat /tmp/vsftpd.conf > /conf.d/vsftpd/vsftpd.conf
+	rm -rf /tmp/vsftpd.conf
+
+	docker-chown root /conf.d/vsftpd/vsftpd.conf
+fi
+

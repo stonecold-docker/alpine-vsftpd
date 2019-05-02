@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ -z "${1}" ]; then
+	echo "Usage : $(basename "${0}") [id]"
+	exit 1
+fi
+
+sed -i "/^${1}:/d" /conf.d/vsftpd/.passwd 2> /dev/null

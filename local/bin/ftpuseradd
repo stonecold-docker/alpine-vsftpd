@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ -z "${1}" -o -z "${2}" ]; then
+	echo "Usage : $(basename "${0}") [id] [password]"
+	exit 1
+fi
+
+sed -i "/^${1}:/d" /conf.d/vsftpd/.passwd 2> /dev/null
+echo "${1}:$(openssl passwd -1 ${2})" >> /conf.d/vsftpd/.passwd
