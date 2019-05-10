@@ -1,6 +1,4 @@
-ARG DOCKER_ARCH="x64"
-
-FROM forumi0721/alpine-${DOCKER_ARCH}-base:latest
+FROM forumi0721/alpine-x64-base:latest
 
 LABEL maintainer="forumi0721@gmail.com"
 

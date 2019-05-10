@@ -1,6 +1,4 @@
-ARG DOCKER_ARCH="armhf"
-
-FROM forumi0721/alpine-${DOCKER_ARCH}-base:latest
+FROM forumi0721/alpine-armhf-base:latest
 
 LABEL maintainer="forumi0721@gmail.com"
 
