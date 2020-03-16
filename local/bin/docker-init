@@ -2,24 +2,29 @@
 
 set -e
 
-docker-install -r -u vsftpd openssl build-base linux-pam-dev wget
+echo "==> Installing required packages"
+PKG_LIB="vsftpd openssl linux-pam"
+docker-install -r -u ${PKG_LIB}
+echo "==> OK"
+echo
 
-rm -rf /build
+echo "==> Installing libpam-pwdfile"
+mkdir -p /etc/pam.d
+cp /usr/local/etc/pam.d/vsftpd /etc/pam.d/vsftpd
+cp /app/libpam-pwdfile/lib/security/pam_pwdfile.so /lib/security/
+rm -rf /app
+echo "==> OK"
+echo
 
-mkdir -p /build/libpam-pwdfile
-cd /build/libpam-pwdfile
-wget --no-check-certificate https://github.com/tiwe-de/libpam-pwdfile/archive/master.tar.gz -q -O - | tar zx
-cd libpam-pwdfile-master
-make
-make install
 
-cd /
-rm -rf /build
+echo "==> Uninstalling unnecessary packages"
+docker-install -d -c
+echo "==> OK"
+echo
 
+echo "==> Setting basic configurations"
 mkdir -p /conf.d /data /conf.d/vsftpd
 touch /conf.d/vsftpd/vsftpd.conf
-
-cp /usr/local/etc/pam.d/vsftpd /etc/pam.d/vsftpd
-
-docker-install -d -c build-base linux-pam-dev wget
+echo "==> OK"
+echo
 
