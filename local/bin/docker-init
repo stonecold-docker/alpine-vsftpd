@@ -2,29 +2,29 @@
 
 set -e
 
-echo "==> Installing required packages"
+echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> Installing required packages"
 PKG_LIB="vsftpd openssl linux-pam"
 docker-install -r -u ${PKG_LIB}
-echo "==> OK"
+echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> OK"
 echo
 
-echo "==> Installing libpam-pwdfile"
+echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> Installing libpam-pwdfile"
 mkdir -p /etc/pam.d
 cp /usr/local/etc/pam.d/vsftpd /etc/pam.d/vsftpd
 cp /app/libpam-pwdfile/lib/security/pam_pwdfile.so /lib/security/
 rm -rf /app
-echo "==> OK"
+echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> OK"
 echo
 
 
-echo "==> Uninstalling unnecessary packages"
+echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> Uninstalling unnecessary packages"
 docker-install -d -c
-echo "==> OK"
+echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> OK"
 echo
 
-echo "==> Setting basic configurations"
+echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> Setting basic configurations"
 mkdir -p /conf.d /data /conf.d/vsftpd
 touch /conf.d/vsftpd/vsftpd.conf
-echo "==> OK"
+echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> OK"
 echo
 
