@@ -6,7 +6,7 @@ FROM forumi0721/alpine-${BUILD_ARCH}-base:latest
 
 LABEL maintainer="forumi0721@gmail.com"
 
-COPY --from=builder /app /app
+COPY --from=builder /output /app
 
 COPY local/. /usr/local/
 
