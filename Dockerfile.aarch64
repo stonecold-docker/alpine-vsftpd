@@ -1,8 +1,20 @@
 ARG BUILD_ARCH=aarch64
 
-FROM forumi0721alpineaarch64build/alpine-aarch64-vsftpd-builder:latest as builder
+FROM forumi0721/alpine-buildbase:aarch64 as builder
 
-FROM forumi0721/alpine-${BUILD_ARCH}-base:latest
+LABEL maintainer="forumi0721@gmail.com"
+
+COPY local/. /usr/local/
+
+RUN ["docker-build-start"]
+
+RUN ["docker-build"]
+
+RUN ["docker-build-end"]
+
+
+
+FROM forumi0721/alpine-base:aarch64
 
 LABEL maintainer="forumi0721@gmail.com"
 

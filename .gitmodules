@@ -1,3 +1,0 @@
-[submodule "builder"]
-	path = builder
-	url = git@bitbucket.org:docker_alpine/alpine-vsftpd-builder.git

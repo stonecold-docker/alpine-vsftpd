@@ -1,23 +1,16 @@
 # alpine-vsftpd
+![Docker Pulls](https://img.shields.io/docker/pulls/forumi0721/alpine-x64-vsftpd)
+![Docker Stars](https://img.shields.io/docker/stars/forumi0721/alpine-x64-vsftpd)
 
-#### [alpine-x64-vsftpd](https://hub.docker.com/r/forumi0721alpinex64/alpine-x64-vsftpd/)
-![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/forumi0721alpinex64/alpine-x64-vsftpd/latest)
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/forumi0721alpinex64/alpine-x64-vsftpd/latest)
-![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/forumi0721alpinex64/alpine-x64-vsftpd/latest)
-![Docker Pulls](https://img.shields.io/docker/pulls/forumi0721alpinex64/alpine-x64-vsftpd)
-![Docker Stars](https://img.shields.io/docker/stars/forumi0721alpinex64/alpine-x64-vsftpd)
-#### [alpine-aarch64-vsftpd](https://hub.docker.com/r/forumi0721alpineaarch64/alpine-aarch64-vsftpd/)
-![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/forumi0721alpineaarch64/alpine-aarch64-vsftpd/latest)
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/forumi0721alpineaarch64/alpine-aarch64-vsftpd/latest)
-![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/forumi0721alpineaarch64/alpine-aarch64-vsftpd/latest)
-![Docker Pulls](https://img.shields.io/docker/pulls/forumi0721alpineaarch64/alpine-aarch64-vsftpd)
-![Docker Stars](https://img.shields.io/docker/stars/forumi0721alpineaarch64/alpine-aarch64-vsftpd)
-#### [alpine-armhf-vsftpd](https://hub.docker.com/r/forumi0721alpinearmhf/alpine-armhf-vsftpd/)
-![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/forumi0721alpinearmhf/alpine-armhf-vsftpd/latest)
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/forumi0721alpinearmhf/alpine-armhf-vsftpd/latest)
-![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/forumi0721alpinearmhf/alpine-armhf-vsftpd/latest)
-![Docker Pulls](https://img.shields.io/docker/pulls/forumi0721alpinearmhf/alpine-armhf-vsftpd)
-![Docker Stars](https://img.shields.io/docker/stars/forumi0721alpinearmhf/alpine-armhf-vsftpd)
+
+
+----------------------------------------
+#### [alpine-x64-vsftpd](https://hub.docker.com/r/forumi0721/alpine-x64-vsftpd/)
+![Docker Image Version](https://img.shields.io/docker/v/forumi0721/alpine-x64-vsftpd/latest)
+![Docker Image Size](https://img.shields.io/docker/image-size/forumi0721/alpine-x64-vsftpd/latest)
+#### [alpine-aarch64-vsftpd](https://hub.docker.com/r/forumi0721/alpine-aarch64-vsftpd/)
+![Docker Image Version](https://img.shields.io/docker/v/forumi0721/alpine-aarch64-vsftpd/aarch64)
+![Docker Image Size](https://img.shields.io/docker/image-size/forumi0721/alpine-aarch64-vsftpd/aarch64)
 
 
 
@@ -25,7 +18,7 @@
 #### Description
 
 * Distribution : [Alpine Linux](https://alpinelinux.org/)
-* Architecture : x64,aarch64,armhf
+* Architecture : x64,aarch64
 * Appplication : [vsftpd](https://security.appspot.com/vsftpd.html)
     - vsftpd is a GPL licensed FTP server for UNIX systems, including Linux.
 
@@ -44,7 +37,7 @@ docker run -d \
            -e USER_PASSWD=<passwd> \
            -e FTP_SHARE=/data \
            -e FTP_BANNER=Welcome \
-           forumi0721alpine[ARCH]/alpine-[ARCH]-vsftpd:latest
+           forumi0721/alpine-vsftpd:[ARCH_TAG]
 ```
 
 
