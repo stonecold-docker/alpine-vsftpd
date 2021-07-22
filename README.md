@@ -1,16 +1,16 @@
 # alpine-vsftpd
-![Docker Pulls](https://img.shields.io/docker/pulls/forumi0721/alpine-x64-vsftpd)
-![Docker Stars](https://img.shields.io/docker/stars/forumi0721/alpine-x64-vsftpd)
+![Docker Pulls](https://img.shields.io/docker/pulls/forumi0721/alpine-vsftpd)
+![Docker Stars](https://img.shields.io/docker/stars/forumi0721/alpine-vsftpd)
 
 
 
 ----------------------------------------
-#### [alpine-x64-vsftpd](https://hub.docker.com/r/forumi0721/alpine-x64-vsftpd/)
-![Docker Image Version](https://img.shields.io/docker/v/forumi0721/alpine-x64-vsftpd/latest)
-![Docker Image Size](https://img.shields.io/docker/image-size/forumi0721/alpine-x64-vsftpd/latest)
-#### [alpine-aarch64-vsftpd](https://hub.docker.com/r/forumi0721/alpine-aarch64-vsftpd/)
-![Docker Image Version](https://img.shields.io/docker/v/forumi0721/alpine-aarch64-vsftpd/aarch64)
-![Docker Image Size](https://img.shields.io/docker/image-size/forumi0721/alpine-aarch64-vsftpd/aarch64)
+### x64
+![Docker Image Version](https://img.shields.io/docker/v/forumi0721/alpine-vsftpd/latest)
+![Docker Image Size](https://img.shields.io/docker/image-size/forumi0721/alpine-vsftpd/latest)
+### aarch64
+![Docker Image Version](https://img.shields.io/docker/v/forumi0721/alpine-vsftpd/aarch64)
+![Docker Image Size](https://img.shields.io/docker/image-size/forumi0721/alpine-vsftpd/aarch64)
 
 
 
