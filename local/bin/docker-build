@@ -3,36 +3,28 @@
 set -e
 
 echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> Installing required packages"
-PKG_LIB="linux-pam"
-PKG_DEV="linux-pam-dev"
-docker-install -r -u ${PKG_LIB} ${PKG_DEV}
+PKG_LIB="vsftpd openssl linux-pam"
+docker-install -r -u ${PKG_LIB}
 echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> OK"
 echo
 
 echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> Installing libpam-pwdfile"
-mkdir -p /app/libpam-pwdfile
-mkdir -p /build
-cd /build
-wget --no-check-certificate -q -O - https://github.com/tiwe-de/libpam-pwdfile/archive/master.tar.gz | tar zx
-cd libpam-pwdfile-master
-make
-make install DESTDIR=/app/libpam-pwdfile
-cd /
-rm -rf /build
+mkdir -p /etc/pam.d
+cp /usr/local/etc/pam.d/vsftpd /etc/pam.d/vsftpd
+cp /app/libpam-pwdfile/lib/security/pam_pwdfile.so /lib/security/
+rm -rf /app
 echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> OK"
 echo
+
 
 echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> Uninstalling unnecessary packages"
-docker-install -d -c ${PKG_DEV}
+docker-install -d -c
 echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> OK"
 echo
 
-echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> Moving output files"
-mkdir -p /output
-mv /app/libpam-pwdfile /output/
-if [ -z "$(ls -A -- /app)" ]; then
-	rm -rf /app
-fi
+echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> Setting basic configurations"
+mkdir -p /conf.d /data /conf.d/vsftpd
+touch /conf.d/vsftpd/vsftpd.conf
 echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> OK"
 echo
 

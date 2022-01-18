@@ -4,13 +4,9 @@ FROM forumi0721/alpine-buildbase:aarch64 as builder
 
 LABEL maintainer="forumi0721@gmail.com"
 
-COPY local/. /usr/local/
+COPY local/bin/docker-build-vsftpd /usr/local/bin/docker-build-vsftpd
 
-RUN ["docker-build-start"]
-
-RUN ["docker-build"]
-
-RUN ["docker-build-end"]
+RUN ["docker-build-vsftpd"]
 
 
 
@@ -22,11 +18,7 @@ COPY --from=builder /output /app
 
 COPY local/. /usr/local/
 
-RUN ["docker-build-start"]
-
-RUN ["docker-init"]
-
-RUN ["docker-build-end"]
+RUN ["docker-build"]
 
 ENTRYPOINT ["docker-run"]
 

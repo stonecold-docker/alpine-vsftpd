@@ -1,0 +1,10 @@
+image: forumi0721/alpine-vsftpd:latest
+manifests:
+  - image: forumi0721/alpine-vsftpd:x64
+    platform:
+      architecture: amd64
+      os: linux
+  - image: forumi0721/alpine-vsftpd:aarch64
+    platform:
+      architecture: arm64
+      os: linux
