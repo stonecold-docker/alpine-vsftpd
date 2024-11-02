@@ -11,7 +11,8 @@ echo
 echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> Installing libpam-pwdfile"
 mkdir -p /etc/pam.d
 cp /usr/local/etc/pam.d/vsftpd /etc/pam.d/vsftpd
-cp /app/libpam-pwdfile/lib/security/pam_pwdfile.so /lib/security/
+mkdir -p /usr/lib/security
+cp /app/libpam-pwdfile/usr/lib/security/pam_pwdfile.so /usr/lib/security/
 rm -rf /app
 echo "[$(TZ="GMT-9" date '+%Y-%m-%d %H:%M:%S')] ==> OK"
 echo

@@ -15,6 +15,7 @@ mkdir -p /build
 cd /build
 wget --no-check-certificate -q -O - https://github.com/tiwe-de/libpam-pwdfile/archive/master.tar.gz | tar zx
 cd libpam-pwdfile-master
+sed -i -e 's@/lib/security@/usr/lib/security@g' Makefile
 make
 make install DESTDIR=/app/libpam-pwdfile
 cd /
