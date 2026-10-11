@@ -5,10 +5,10 @@
 
 
 ----------------------------------------
-### x64
-![Docker Image Size](https://img.shields.io/docker/image-size/forumi0721/alpine-vsftpd/x64)
-### aarch64
-![Docker Image Size](https://img.shields.io/docker/image-size/forumi0721/alpine-vsftpd/aarch64)
+### amd64
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/forumi0721/alpine-vsftpd/latest?arch=amd64)
+### arm64
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/forumi0721/alpine-vsftpd/latest?arch=arm64)
 
 
 
@@ -16,8 +16,8 @@
 #### Description
 
 * Distribution : [Alpine Linux](https://alpinelinux.org/)
-* Architecture : x64,aarch64
-* Appplication : [vsftpd](https://security.appspot.com/vsftpd.html)
+* Architecture : amd64, arm64
+* Application : [vsftpd](https://security.appspot.com/vsftpd.html)
     - vsftpd is a GPL licensed FTP server for UNIX systems, including Linux.
 
 
@@ -35,7 +35,7 @@ docker run -d \
            -e USER_PASSWD=<passwd> \
            -e FTP_SHARE=/data \
            -e FTP_BANNER=Welcome \
-           forumi0721/alpine-vsftpd:[ARCH_TAG]
+           forumi0721/alpine-vsftpd:latest
 ```
 
 
